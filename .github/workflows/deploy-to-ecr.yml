@@ -20,7 +20,6 @@ jobs:
         aws-region: ${{ secrets.AWS_REGION }}
 
     - name: Login to Amazon ECR
-      id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2
 
     - name: Build Docker image
@@ -32,3 +31,10 @@ jobs:
     - name: Push Docker image to ECR
       run: |
         docker push $IMAGE_URI
+
+    - name: Force ECS service deployment
+      run: |
+        aws ecs update-service \
+          --cluster ${{ secrets.ECS_CLUSTER_NAME }} \
+          --service ${{ secrets.ECS_SERVICE_NAME }} \
+          --force-new-deployment
