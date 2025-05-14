@@ -5,28 +5,25 @@ import time
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
+if not logger.handlers:
+    handler = logging.StreamHandler()
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+
 def run_etl():
-    """
-    This is a simple ETL function.
-    You can replace this with actual ETL logic (like database, API, file operations).
-    """
     logger.info("Starting ETL process...")
 
-    # Simulating ETL process: Extract -> Transform -> Load
     try:
-        # Extract
         logger.info("Extracting data...")
-        time.sleep(2)  # Simulating data extraction delay
+        time.sleep(2)
 
-        # Transform
         logger.info("Transforming data...")
-        time.sleep(2)  # Simulating data transformation delay
+        time.sleep(2)
 
-        # Load
         logger.info("Loading data...")
-        time.sleep(2)  # Simulating data loading delay
+        time.sleep(2)
 
         logger.info("ETL process completed successfully!")
-
     except Exception as e:
         logger.error(f"ETL process failed: {e}")
