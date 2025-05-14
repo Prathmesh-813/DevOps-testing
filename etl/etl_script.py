@@ -1,10 +1,11 @@
+# etl_script.py
 import logging
 import time
 
-# Setup logger
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
+# Add this block:
 if not logger.handlers:
     handler = logging.StreamHandler()
     formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
